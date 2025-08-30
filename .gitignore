@@ -1,0 +1,22 @@
+# Ignore virtual environment
+.venv/
+zz/
+env/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Django migrations (opcional, se quiser versionar, remova)
+*/migrations/*.py
+*/migrations/*.pyc
+
+# SQLite database
+*.sqlite3
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
