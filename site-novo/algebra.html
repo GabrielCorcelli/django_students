@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Álgebra - Função do 1º Grau</title>
+<style>
+    /* RESET BÁSICO */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(135deg, #1f1f1f, #121212);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #f0f0f0;
+        line-height: 1.6;
+    }
+
+    .NeuroVest {
+        margin: 20px;
+    }
+
+    .NeuroVest a {
+        font-size: 22px;
+        padding: 10px 18px;
+        color: #4da6ff;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .NeuroVest a:hover {
+        color: #fff;
+        background-color: #1e90ff33;
+    }
+
+    .titulo {
+        font-size: 42px;
+        margin-top: 10px;
+        color: #fff;
+        text-align: center;
+        text-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+    }
+
+    .lista-assuntos {
+        margin: 30px;
+    }
+
+    .t-assunto {
+        border-radius: 12px;
+        text-decoration: underline;
+        color: #4da6ff;
+        cursor: pointer;
+        font-size: 28px;
+        padding: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .t-assunto:hover {
+        color: #1e90ff;
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    }
+
+    .l { opacity: 0.95; }
+
+    /* Container geral */
+    .container-f1 {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 20px;
+        padding: 30px;
+        border-radius: 15px;
+        background-color: rgba(255,255,255,0.07);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+        transform: scale(0.98);
+        transition: all 0.4s ease;
+        font-size: 30px;
+    }
+
+    .container-f1.active { transform: scale(1); background-color: rgba(255,255,255,0.1); border: 2px solid #4da6ff; }
+
+    /* Flex para blocos */
+    .Texto-Resumo {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+        text-align: left;
+        margin: 20px auto;
+        max-width: 1200px;
+        padding: 30px;
+        background-color: rgba(0,0,0,0.25);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .bloco-texto {
+        flex: 1 1 350px;
+        padding: 80px 100px;
+        background-color: rgba(77,166,255,0.05);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+
+    .Texto-Resumo h2 {
+        color: #4da6ff;
+        margin-bottom: 10px;
+        border-bottom: 2px solid rgba(77,166,255,0.3);
+        padding-bottom: 5px;
+    }
+
+    .Texto-Resumo p, .Texto-Resumo li { font-size: 18px; margin-bottom: 10px; }
+
+    .Texto-Resumo ul { margin-left: 20px; }
+
+    .Texto-Resumo table { border-collapse: collapse; width: 100%; margin: 10px auto; text-align: center; }
+    .Texto-Resumo th, .Texto-Resumo td { border: 1px solid #4da6ff; padding: 8px 12px; }
+    .Texto-Resumo th { background-color: rgba(77,166,255,0.15); }
+
+    .grafico, .conteudo-img1 {
+        max-width: 100%;
+        border-radius: 12px;
+        margin-top: 10px;
+    }
+
+    .conteudo-img1 {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+        cursor: pointer;
+    }
+
+    .conteudo-img1.show { opacity: 1; display: block; }
+
+    .conteudo-img1.enlarged {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        max-height: 85%;
+        z-index: 9999;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.8);
+    }
+
+    .botao-fechar {
+        font-size: 25px;
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        border-radius: 50px;
+        height: 38px;
+        width: 50px;
+        background-color: #ff4d4d;
+        color: white;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .botao-fechar:hover { background-color: #ff1a1a; transform: scale(1.1); }
+
+    #baixar-btn {
+        margin: 20px auto;
+        display: block;
+        width: 280px;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background: #4da6ff;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+
+    #baixar-btn:hover { background: #1e90ff; transform: scale(1.05); }
+
+    @media (max-width: 900px) {
+        .Texto-Resumo { flex-direction: column; }
+    }
+
+</style>
+</head>
+<body>
+<div class="NeuroVest"><a href="index.html">NeuroVest</a></div>
+<div class="titulo"><h1>Álgebra</h1></div>
+
+<main>
+    <div class="lista-assuntos">
+        <div id="f1" class="l f1grau">
+            <h1 class="t-assunto">- Função do 1º Grau</h1>
+            <div class="container-f1"></div>
+        </div>
+    </div>
+</main>
+
+<script>
+const f1 = document.getElementById('f1');
+const containerF1 = document.querySelector('.container-f1');
+
+function criarBotaoFechar() {
+    if (!containerF1.querySelector('.botao-fechar')) {
+        const botaoF = document.createElement('button');
+        botaoF.textContent = 'X';
+        botaoF.classList.add('botao-fechar');
+        botaoF.addEventListener('click', (event) => {
+            event.stopPropagation();
+            containerF1.innerHTML = '';
+            containerF1.classList.remove('active');
+        });
+        containerF1.appendChild(botaoF);
+    }
+}
+
+function criarBotaoDownload() {
+    if (!document.getElementById('baixar-btn')) {
+        const botao = document.createElement('button');
+        botao.id = 'baixar-btn';
+        botao.textContent = 'Baixar PDF com questões';
+        botao.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.href = 'Questoes_Funcao_Primeiro_Grau.pdf';
+            link.download = 'questoes-f1.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+        containerF1.appendChild(botao);
+    }
+}
+
+function criarTexto() {
+    if (!containerF1.querySelector('.Texto-Resumo')) {
+        const texto = `
+        <div class="Texto-Resumo">
+            <div class="bloco-texto">
+                <h2>Função do 1º Grau</h2>
+                <p>A <strong>função do 1º grau</strong> é uma relação matemática onde cada valor de <em>x</em> tem um único valor correspondente de <em>y</em>, e a variação de <em>y</em> em relação a <em>x</em> é constante:</p>
+                <p><strong>f(x) = ax + b</strong></p>
+                <ul>
+                    <li><strong>a</strong>: coeficiente angular — indica a inclinação da reta.
+                        <ul>
+                            <li>a > 0 → reta sobe da esquerda para a direita.</li>
+                            <li>a < 0 → reta desce da esquerda para a direita.</li>
+                            <li>a = 0 → reta horizontal.</li>
+                        </ul>
+                    </li>
+                    <li><strong>b</strong>: coeficiente linear — ponto onde a reta cruza o eixo y (x = 0).</li>
+                </ul>
+            </div>
+            <div class="bloco-texto">
+                <h2>Exemplo Detalhado</h2>
+                <p>Considere a função: <strong>f(x) = 2x + 1</strong></p>
+                <ul>
+                    <li>a = 2 → cada avanço de 1 no eixo x aumenta y em 2.</li>
+                    <li>b = 1 → x = 0, y = 1 (reta cruza y em 1).</li>
+                </ul>
+                <p>Alguns pontos da função:</p>
+                <table>
+                    <tr><th>x</th><th>y = 2x + 1</th></tr>
+                    <tr><td>0</td><td>1</td></tr>
+                    <tr><td>1</td><td>3</td></tr>
+                    <tr><td>2</td><td>5</td></tr>
+                    <tr><td>-1</td><td>-1</td></tr>
+                </table>
+            </div>
+            <div class="g bloco-texto">
+                <h2>Gráfico</h2>
+                <img src="img/minha-imagem.png" alt="Função do 1º Grau" class="conteudo-img1 show">
+            </div>
+        </div>
+        `;
+        const container = document.createElement('div');
+        container.innerHTML = texto;
+        containerF1.appendChild(container);
+    }
+}
+
+f1.addEventListener('click', () => {
+    containerF1.classList.add('active');
+    criarBotaoFechar();
+    criarTexto();
+    criarBotaoDownload();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Função do 1º Grau</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f9;
+        color: #333;
+    }
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
+    .texto, .imagem {
+        flex: 1 1 300px;
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .imagem img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+    @media (max-width: 700px) {
+        .container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+</head>
+<body>
+
+<h1>Função do 1º Grau</h1>
+
+<div class="container">
+    <div class="texto">
+        <h2>Definição</h2>
+        <p>A função do 1º grau é dada por <strong>f(x) = ax + b</strong>, onde <em>a</em> define a inclinação da reta e <em>b</em> indica onde a reta corta o eixo y.</p>
+        <h3>Exemplo:</h3>
+        <p>Se f(x) = 2x + 1, a reta sobe 2 unidades para cada 1 unidade que anda para a direita, e cruza o eixo y em 1.</p>
+    </div>
+    <div class="imagem">
+        <h2>Gráfico</h2>
+        <img src="https://i.imgur.com/3p5L9uQ.png" alt="Gráfico de funções do 1º grau">
+    </div>
+</div>
+
+</body>
+</html>

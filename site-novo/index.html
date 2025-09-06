@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+    
+</head>
+<body>
+    
+    <header>
+        <div class="menu-toggle" onclick="document.querySelector('.nav-bar-left').classList.toggle('active')">
+            <h1>☰</h1>
+        </div>
+        <div class="titulo"><h1>NeuroVest</h1></div>
+        <div class="elementos-superiores">
+            <div class="apresentacao"> <h2>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore quos sit, magni ea architecto aliquid cumque perspiciatis consequuntur provident earum tempore eligendi minima facilis numquam dignissimos laborum blanditiis deleniti corporis.</h2></div>
+            <div class="imagnes-superior">
+                <img src="img/ChatGPT Image Aug 26, 2025, 11_03_56 PM.png" style="width: 400px; height: 400px" alt="">
+                <img src="img/ChatGPT Image Aug 26, 2025, 11_06_56 PM.png" style="width: 400px; height: 400px" alt="">
+            </div>
+            
+            <div id="nav-bar-left" class="nav-bar-left"> 
+                <button class="btn-deslizar" onclick="document.getElementById('nav-bar-left').classList.toggle('active')">
+                    <h1>☰</h1>
+                </button>
+                
+                
+                <div id="areas" class="areas"> 
+                    <h1>areas</h1>
+                    <div id="container-areas"></div>
+                </div>
+            </div>
+     
+        </div>
+    </header>
+    <main>
+        <div class="nav-buscar">
+            <input type="text" id="busca" placeholder="Procure por algo" > 
+        </div>
+    </main>
+
+<script>
+
+
+    //NAB-BAR BOTAO
+    const NavBar = document.getElementById("nav-bar-left");
+    const btn = document.querySelector(".btn-deslizar");
+
+    btn.addEventListener("mouseenter", () => {
+        // Alterna a classe 'active' e imprime no console para verificar se está funcionando
+        NavBar.classList.toggle("active");
+        console.log('Classe "active" atual:', NavBar.classList);
+    });
+
+
+    const areas = document.getElementById('areas');
+    const containerareas = document.getElementById('container-areas');
+
+    //NAB-BAR Criar areas
+    function CriarAreas(NomeArea, NomesSubMaterias, LinksSubMaterias) {
+        // Cria a div da área apenas uma vez
+        const area = document.createElement('div');
+        area.classList.add('container-areas', 'container-' + NomeArea.toLowerCase());
+        area.textContent = NomeArea;
+        containerareas.appendChild(area);
+
+        // Cria o container das submatérias (inicialmente vazio)
+        const container = document.createElement('div');
+        container.classList.add('class-container');
+        area.appendChild(container);
+
+        let timeoutId; // para controlar o delay
+
+        // Mostra as submatérias ao passar o mouse sobre a área
+        area.addEventListener('mouseenter', () => {
+            // Evita duplicação
+            if (container.childElementCount === 0) {
+                timeoutId = setTimeout(() => {
+                    NomesSubMaterias.forEach((nome, index) => {
+                        const link = document.createElement('a');
+                        link.classList.add('submateria');
+                        link.textContent = nome;
+                        link.href = LinksSubMaterias[index] || '#'; // define o link ou "#" se não tiver
+                        //link.target = "_blank"; // opcional: abre em nova aba
+                        container.appendChild(link);
+                    });
+                }, 50 ); // delay
+            }
+        });
+
+        // Esconde as submatérias ao sair da área
+        area.addEventListener('mouseleave', () => {
+            clearTimeout(timeoutId); // cancela o delay se o mouse sair antes
+            container.innerHTML = '';
+        });
+    }
+
+    // Exemplo: cada submatéria com link
+    CriarAreas(
+        'Humanas',
+        ['Geografia', 'História', 'Filosofia', 'Sociologia'],
+        [
+            'https://pt.wikipedia.org/wiki/Geografia',
+            'https://pt.wikipedia.org/wiki/Hist%C3%B3ria',
+            'https://pt.wikipedia.org/wiki/Filosofia',
+            'https://pt.wikipedia.org/wiki/Sociologia'
+        ]
+    );
+
+    CriarAreas(
+        'Linguagens',
+        ['Gramática', 'Interpretação Textual'],
+        [
+            'https://pt.wikipedia.org/wiki/Gram%C3%A1tica',
+            'https://pt.wikipedia.org/wiki/Interpreta%C3%A7%C3%A3o_textual'
+        ]
+    );
+
+    CriarAreas('Naturezas', ['Física', 'Química', 'Biologia'], [
+        'https://pt.wikipedia.org/wiki/F%C3%ADsica',
+        'https://pt.wikipedia.org/wiki/Qu%C3%ADmica',
+        'https://pt.wikipedia.org/wiki/Biologia'
+    ]);
+
+    CriarAreas('Matematica', ['Álgebra', 'Geometria', 'Trigonometria'], [
+        'algebra.html',
+        'https://pt.wikipedia.org/wiki/Geometria',
+        'https://pt.wikipedia.org/wiki/Trigonometria'
+    ]);
+
+    CriarAreas('Redação', ['Redações Nota 1000'], ['#']);
+
+
+
+
+
+    ;
+</script>
+    
+</body>
+</html>
