@@ -1,4 +1,0 @@
--melhorar animaçao nav-bar
--colocar underline so nos subtitulos
--trocar 'div' dos subtitulos por 'a' para poder colocar o link
--deixar responsivo
