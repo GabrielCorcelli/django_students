@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,21 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="style.css" rel="stylesheet">
     
 </head>
 <body>
-    
+
     <header>
+        <img  alt="">
+
         <div class="menu-toggle" onclick="document.querySelector('.nav-bar-left').classList.toggle('active')">
             <h1>☰</h1>
         </div>
         <div class="titulo"><h1>NeuroVest</h1></div>
         <div class="elementos-superiores">
-            <div class="apresentacao"> <h2>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore quos sit, magni ea architecto aliquid cumque perspiciatis consequuntur provident earum tempore eligendi minima facilis numquam dignissimos laborum blanditiis deleniti corporis.</h2></div>
-            <div class="imagnes-superior">
-                <img src="{% static 'img/linguagens_img.png' %}" style="width: 400px; height: 400px" alt="">
-                <img src="{% static 'img/natureza.png' %}" style="width: 400px; height: 400px" alt="">
+            <div class="imagnes-superior">            
+            </div>
+            
+              
             </div>
             
             <div id="nav-bar-left" class="nav-bar-left"> 
@@ -28,13 +29,19 @@
                     <h1>☰</h1>
                 </button>
                 
-                
                 <div id="areas" class="areas"> 
                     <h1>areas</h1>
                     <div id="container-areas"></div>
                 </div>
             </div>
-     
+
+        </div>
+        <div class="frase-efeito"> 
+                <h2>Melhor Plataforma <br>Educacional </h2> 
+                <h3>DO BRASIL</h2>
+        </div>
+        <div class="apresentacao"> 
+            <h1>Nos Te Auxiliamos Na Sua Preparação Para O ENEM!</h1>
         </div>
     </header>
     <main>
