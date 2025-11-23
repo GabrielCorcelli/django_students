@@ -1,4 +1,6 @@
 from django.db import models
 
-# Create your models here.
-#teste
+
+class Estudante(models.Model):
+    nome = models.CharField(max_length=30)
+    sobrenome = models.CharField(max_length=30)
